@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+
+{% block title %} Home {% endblock title %}
+
+{% block css %}
+
+body {
+	background-image:
+		url('https://images.pexels.com/photos/733857/pexels-photo-733857.jpeg?auto=compress&cs=tinysrgb&w=600');
+	/* Replace with your image URL */
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	color: white; /* Set text color to contrast with the background */
+	
+}
+
+.container {
+
+	background-color: rgba(0, 0, 0, 0.6);
+	/* Add a semi-transparent background to improve text visibility */
+	border-radius: 10px;
+	/* Optional: Add rounded corners to the container */
+	padding: 20px;
+	margin-top: 50px; /* Adjust the margin as needed */
+}
+
+.table {
+	color: black; /* Set text color for table content */
+}
+.navbar {
+    border-bottom: 1px solid #ccc; /* Add border line only at the bottom */
+}
+.navbar {
+	background-color: white;
+	color: black;
+}
+
+.navbar-brand {
+	color: #e74c3c; /* Softra text color */
+	font-size: 30px;
+	font-weight: 700;
+	font-family: Arial, sans-serif; /* Change font style */
+}
+
+.navbar-nav .nav-link {
+	color: black;
+	font-family: Arial, sans-serif; /* Change font style */
+}
+{% endblock css %}
+
+{% block body %}
+<div class="container mt-6" style="margin-bottom: 350px">
+    <div class="row" >
+        <div class="col-md-12">
+            <h1 class="text-center">Get Info of your Request</h1>
+            <table class="table table-bordered mt-3">
+                <thead class="table-dark">
+                    <tr>
+                        {% comment %} <th scope="col">Username</th> {% endcomment %}
+							<th scope="col">Name</th>
+							<th scope="col">Contact</th>
+							<th scope="col">Address</th>
+							<th scope="col">Request Type</th>
+							<th scope="col">Details</th>
+							<th scope="col">Created At</th>
+							<th scope="col">Status</th>
+							<th scope="col">Resolved At</th>
+                        
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for request in service_requests %}
+                    <tr>
+                        {% comment %} <td>{{ request.customer.username }}</td> {% endcomment %}
+            <td>{{ request.name }}</td>
+            <td>{{ request.contactno }}</td>
+            <td>{{ request.address }}</td>
+            <td>{{ request.request_type }}</td>
+            <td>{{ request.details }}</td>
+            <td>{{ request.created_at }}</td>
+            <td><b>{{ request.status }}</b></td>
+            <td>{{ request.resolved_at }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <div class="container text-end">
+            
+                <a href="/send_request" class="btn btn-success">Send Request</a>
+                <a href="/logout" class="btn btn-danger">Logout</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock body %}
